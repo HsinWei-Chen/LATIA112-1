@@ -2,20 +2,23 @@ import pandas as pd
 import random
 import matplotlib.pyplot as plt
 
-df = pd.read_csv('C:/Users/user/Desktop/HW1/University Ranking.csv')
+df = pd.read_csv('C:/Users/user/Desktop/LATIA112-1/HW1/University Ranking.csv')
 print(df)
 
 # Q1 : find the top 10 universities in which contry
 data = df[["Location"]].head(10)
-for i in data:
-    print(data[i].value_counts())
+top_10 = data.value_counts()
+top_10.plot(kind='pie',autopct='%1.1f%%')
+plt.title('Top 10 Universities')
+plt.show()
+print(top_10)
 
-# Q2 : find the highest ranked university in each country
+# Q2 : find the highest ranked university in each country and graph it
 data = df.head(100)
-answer = pd.DataFrame()
+highest = pd.DataFrame()
 temp_df = data[data['National Rank'] == 1]
-answer = temp_df.loc[:,['Location','Institution','World Rank']]
-print(answer)
+highest = temp_df.loc[:,['Location','Institution','World Rank']]
+print(highest)
 
 # Q3 : the top 100 education rank of universities
 temp_df = df[["Institution","Education Rank"]]
@@ -39,31 +42,41 @@ Research_rank = temp_df[temp_df['Research Rank'].astype(int) <= 100]
 Research_rank = Research_rank.sort_values(by=['Research Rank'])        
 print(Research_rank)
 
-# Q6 : The score of top 100 universities
-data = df.head(100)
-answer = df.loc[:,['Institution','Score']]
-print(answer)
-
-# Q7 : the count of top 200 universities in each country and compare the top 10 countries
-answer = df.loc[:,['Location']].head(200)
-answer = answer.value_counts()
-print(answer.head(10))
-
-# Q8 : the top 100 enployable rank of universities
+# Q6 : the top 100 enployable rank of universities
 temp_df = df[["Institution","Employability Rank"]]
 temp_df = temp_df[temp_df['Employability Rank'] != '-']   
 temp_df = temp_df.dropna(subset=['Employability Rank'])
 Employability_rank = temp_df[temp_df['Employability Rank'].astype(int) <= 100]
 print(Employability_rank)
 
+# Q7 : the top 100 universities' scorce and the proportion of each country
+data = df.head(100)
+score = df.loc[:,['Institution','Score']]
+propertion = data.loc[:,['Location']].value_counts()
+print(score)
+print(propertion)
+propertion.plot(kind='pie',autopct='%1.1f%%',)
+plt.title('Top 100 Universities')
+plt.axis('equal')
+plt.show()
+
+# Q8 : the count of top 200 universities in each country and compare the top 10 countries
+top200 = df.loc[:,['Location']].head(200)
+top_10_country = top200.value_counts().head(10)
+print(top_10_country)
+top_10_country.plot(kind='bar')
+plt.xlabel('Location')
+plt.ylabel('Count')
+plt.show()
+
 # Q9 : The National Rank of USA 
 temp_df = df[df['Location'] == 'USA']
-answer = temp_df.loc[:,['Institution','National Rank']]
-print(answer)
+USA_Rank = temp_df.loc[:,['Institution','National Rank']]
+print(USA_Rank)
 
 # Q10 : The rank of Taiwan University
 temp_df = df[df['Location'] == 'Taiwan']
-answer = temp_df.loc[:,['Institution','World Rank']]
-print(answer)
+Taiwan_Ranlk = temp_df.loc[:,['Institution','World Rank']]
+print(Taiwan_Ranlk)
 
 
