@@ -13,7 +13,7 @@
 # **課程筆記**
 # **作業連結**
 ## **作業一**
-* [World University Ranking](https://github.com/HsinWei-Chen/LATIA112-1/blob/main/HW1/csv_read.py)
+* [World University Ranking](https://github.com/HsinWei-Chen/LATIA112-1/blob/main/HW1/HW1.ipynb)
 ## **作業二**
 ## **作業三**
 # **專題連結區**
