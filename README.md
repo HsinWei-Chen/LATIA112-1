@@ -9,6 +9,7 @@
   + [作業一](#作業一)
   + [作業二](#作業二)
   + [作業三](#作業三)
+  + [作業四[(#作業四)
 * [專題連結區](#專題連結區)
 # **課程筆記**
 # **作業連結**
@@ -17,4 +18,6 @@
 ## **作業二**
 * [Different Departments of World University Ranking](https://github.com/HsinWei-Chen/LATIA112-1/blob/main/HW2/HW2.ipynb)
 ## **作業三**
+* [AI Robot](https://github.com/HsinWei-Chen/LATIA112-1/blob/main/HW3/app.py)
+## **作業四**
 # **專題連結區**
