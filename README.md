@@ -15,5 +15,6 @@
 ## **作業一**
 * [World University Ranking](https://github.com/HsinWei-Chen/LATIA112-1/blob/main/HW1/HW1.ipynb)
 ## **作業二**
+* [Different Departments of World University Ranking](https://github.com/HsinWei-Chen/LATIA112-1/blob/main/HW2/HW2.ipynb)
 ## **作業三**
 # **專題連結區**
