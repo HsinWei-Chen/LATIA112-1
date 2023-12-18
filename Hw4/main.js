@@ -1,5 +1,5 @@
 // GEt data
-d3.csv("https://raw.githubusercontent.com/HsinWei-Chen/LATIA112-1/main/cwurData.csv").then(
+d3.csv("https://raw.githubusercontent.com/HsinWei-Chen/LATIA112-1/main/Hw4/cwurData.csv").then(
     res => {
         console.log(res);
         drawBarChart(res);
@@ -11,19 +11,28 @@ function drawPieChart(res) {
 
     let trace1 = {};
     trace1.type = 'pie';
-    trace1.title = 'Sexual Distribution';
-    trace1.lables = ['Male','Female'];
-    trace1.values = [0,0];
+    trace1.title = 'Country Porportion';
+    trace1.lables = ['USA', 'United Kingdom', 'Japan', 'Switzerland', 'Israel',
+    'Canada', 'France', 'Sweden', 'South Korea', 'Italy', 'Germany',
+    'Netherlands', 'Finland', 'Norway', 'Australia', 'Denmark',
+    'Singapore', 'Russia', 'China', 'Taiwan', 'Belgium',
+    'South Africa', 'Spain', 'Brazil', 'Hong Kong', 'Ireland',
+    'Austria', 'New Zealand', 'Portugal', 'Thailand', 'Czech Republic',
+    'Malaysia', 'India', 'Greece', 'Mexico', 'Hungary', 'Argentina',
+    'Turkey', 'Poland', 'Saudi Arabia', 'Chile', 'Iceland', 'Slovenia',
+    'Estonia', 'Lebanon', 'Croatia', 'Colombia', 'Slovak Republic',
+    'Iran', 'Egypt', 'Serbia', 'Bulgaria', 'Lithuania', 'Uganda',
+    'United Arab Emirates', 'Uruguay', 'Cyprus', 'Romania',
+    'Puerto Rico'];
+    trace1.values = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     trace1.hole = 0.5;
 
-    for (let x=0; x< res.length; x++){
-        if (res[x]['Sex']=="male"){
-            trace1.values[0] += 1;
-        }else{
-            trace1.values[1] += 1;
-        
-        }
+    for (let i=0; i<100; i++) {
+        trace1.x[i] = res[i]['release_year'];
+        trace1.y[i] = res[i]['revenue'];
+        trace1.text[i] = res[i]['title'];
     }
+
     let data = [];
     data.push(trace1);
 
