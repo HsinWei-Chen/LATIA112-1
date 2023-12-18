@@ -9,3 +9,4 @@ count = count.reset_index()
 country = count['country']
 count = count['count']
 countjs = count.to_json(orient='values')
+

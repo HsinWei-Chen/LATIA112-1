@@ -4,6 +4,7 @@ d3.csv("https://raw.githubusercontent.com/HsinWei-Chen/LATIA112-1/main/Hw4/cwurD
         console.log(res);
         drawBarChart(res);
         drawPieChart(res);
+        drawLineChart(res);
     }
 );
 
@@ -15,22 +16,15 @@ function drawPieChart(res) {
     trace1.lables = ['USA', 'United Kingdom', 'Japan', 'Switzerland', 'Israel',
     'Canada', 'France', 'Sweden', 'South Korea', 'Italy', 'Germany',
     'Netherlands', 'Finland', 'Norway', 'Australia', 'Denmark',
-    'Singapore', 'Russia', 'China', 'Taiwan', 'Belgium',
-    'South Africa', 'Spain', 'Brazil', 'Hong Kong', 'Ireland',
-    'Austria', 'New Zealand', 'Portugal', 'Thailand', 'Czech Republic',
-    'Malaysia', 'India', 'Greece', 'Mexico', 'Hungary', 'Argentina',
-    'Turkey', 'Poland', 'Saudi Arabia', 'Chile', 'Iceland', 'Slovenia',
-    'Estonia', 'Lebanon', 'Croatia', 'Colombia', 'Slovak Republic',
-    'Iran', 'Egypt', 'Serbia', 'Bulgaria', 'Lithuania', 'Uganda',
-    'United Arab Emirates', 'Uruguay', 'Cyprus', 'Romania',
-    'Puerto Rico'];
-    trace1.values = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    'Singapore', 'Russia', 'China', 'Taiwan', 'Belgium'];
+    trace1.values = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
     trace1.hole = 0.5;
-
-    for (let i=0; i<100; i++) {
-        trace1.x[i] = res[i]['release_year'];
-        trace1.y[i] = res[i]['revenue'];
-        trace1.text[i] = res[i]['title'];
+    for (let i=0; i<22; i++){
+        for (let x=0; x< res.length; x++){
+            if (res[x]['country'] == trace1.lables[i]){
+                trace1.values[i] += 1;
+            }
+        }
     }
 
     let data = [];
@@ -40,30 +34,36 @@ function drawPieChart(res) {
     margin: {
         t:0
         },
+        legend: {
+            size: 0.5
+        }
     };
     Plotly.newPlot('myGraph', data, layout);
 };
 
 function drawBarChart(res) {
 
-    let trace1 = {};
-    trace1.type = 'bar';
-    trace1.title = 'Port of Embarkation';
-    trace1.x = ['S','C','Q'];
-    trace1.y = [0,0,0];
+    let trace2 = {};
+    trace2.type = 'bar';
+    trace2.mode = 'markers';
+    trace2.title = 'United Kindom 100 Ranking 2012-2015';
+    trace2.x = ['2012','2013','2014','2015'];
+    trace2.y = [0,0,0,0];
 
     for (let x=0; x< res.length; x++){
-        if (res[x]['Embarked']=="S"){
-            trace1.y[0] += 1;
-        } else if (res[x]['Embarked']=="C"){
-            trace1.y[1] += 1;
-        } else {
-            trace1.y[2] += 1;
-    }
+        if (res[x]['year']=="2012" && res[x]['country']=="United Kingdom"){
+            trace2.y[0] += 1;
+        }else if (res[x]['year']=="2013" && res[x]['country']=="United Kingdom"){
+            trace2.y[1] += 1;
+        }else if (res[x]['year']=="2014" && res[x]['country']=="United Kingdom"){
+            trace2.y[2] += 1;
+        }else if (res[x]['year']=="2015" && res[x]['country']=="United Kingdom"){
+            trace2.y[3] += 1;
+        }
     }
 
     let data2 = [];
-    data2.push(trace1);
+    data2.push(trace2);
 
     let layout2 = {
     margin: {
@@ -72,6 +72,40 @@ function drawBarChart(res) {
     };
     Plotly.newPlot('myGraph2', data2, layout2);
 };
+
+function drawLineChart(res) {
+
+    let trace3 = {};
+    trace3.type = 'scatter';
+    trace3.mode = 'lines+markers';
+    trace3.title = 'MIT world ranking(2012-2015)';
+    trace3.lables = ['2012','2013','2014','2015'];
+    trace3.x = [];
+    trace3.y = [];
+    i = 0;
+    for (let x=0; x< res.length; x++){
+        if (res[x]['institution']=="Massachusetts Institute of Technology"){
+            trace3.y[i] = res[x]['world_rank'];
+            trace3.x[i] = res[x]['year'];
+            i += 1;
+        }
+    }
+
+    let data3 = [];
+    data3.push(trace3);
+
+    let layout3 = {
+    margin: {
+        t:0
+        },
+    title:{
+        text:'MIT world ranking(2012-2015)'
+    }
+    };
+
+    Plotly.newPlot('myGraph3', data3, layout3);
+};
+
 
 
 
