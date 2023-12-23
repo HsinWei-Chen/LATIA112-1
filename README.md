@@ -23,4 +23,4 @@
 * [World University Ranking Plot](https://github.com/HsinWei-Chen/LATIA112-1/blob/main/Hw4/index.html)
 # **專題連結區**
 ## **Final Project**
-* [Stress Suggestion]
+* [Stress Suggestion](https://github.com/Lanli0226/Final_Project_Demo/blob/main/final_project/app.py)
